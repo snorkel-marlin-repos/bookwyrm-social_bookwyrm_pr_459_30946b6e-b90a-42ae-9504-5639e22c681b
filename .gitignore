@@ -1,0 +1,18 @@
+# Python
+/venv
+*.pyc
+*.swp
+
+# VSCode
+/.vscode
+
+# sqlite
+*.db
+*.db-journal
+
+# BookWyrm
+.env
+/images/
+
+# Testing
+.coverage

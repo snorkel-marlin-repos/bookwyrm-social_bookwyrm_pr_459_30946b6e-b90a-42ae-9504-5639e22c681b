@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+{% load humanize %}
+{% load bookwyrm_tags %}
+{% block content %}
+<div class="block">
+    <h1 class="title">Notifications</h1>
+
+    <form name="clear" action="/clear-notifications" method="POST">
+        {% csrf_token %}
+        <button class="button is-danger is-light" type="submit" class="secondary">Delete notifications</button>
+    </form>
+</div>
+
+<div class="block">
+    {% for notification in notifications %}
+    <div class="notification {% if notification.id in unread %} is-primary{% endif %}">
+        <div class="block">
+            <p>
+                {# DESCRIPTION #}
+                {% if notification.related_user %}
+                {% include 'snippets/avatar.html' with user=notification.related_user %}
+                {% include 'snippets/username.html' with user=notification.related_user %}
+                {% if notification.notification_type == 'FAVORITE' %}
+                    favorited your
+                    <a href="{{ notification.related_status.local_path }}">status</a>
+
+                {% elif notification.notification_type == 'MENTION' %}
+                    mentioned you in a
+                    <a href="{{ notification.related_status.local_path }}">status</a>
+
+                {% elif notification.notification_type == 'REPLY' %}
+                    <a href="{{ notification.related_status.local_path }}">replied</a>
+                    to your
+                    <a href="{{ notification.related_status.reply_parent.local_path }}">status</a>
+                {% elif notification.notification_type == 'FOLLOW' %}
+                    followed you
+                {% elif notification.notification_type == 'FOLLOW_REQUEST' %}
+                    sent you a follow request
+                    <div class="row shrink">
+                        {% include 'snippets/follow_request_buttons.html' with user=notification.related_user %}
+                    </div>
+
+                {% elif notification.notification_type == 'BOOST' %}
+                    boosted your <a href="{{ notification.related_status.local_path }}">status</a>
+                {% endif %}
+                {% else %}
+                    your <a href="/import-status/{{ notification.related_import.id }}">import</a> completed.
+                {% endif %}
+            </p>
+        </div>
+        {% if notification.related_status %}
+        <div class="block">
+            {# PREVIEW #}
+            <div class="notification py-2 {% if notification.id in unread %}is-primary is-light{% else %}has-background-white{% if notification.notification_type == 'REPLY' or notification.notification_type == 'MENTION' %} has-text-black{% else %}-bis has-text-grey-dark{% endif %}{% endif %}">
+                <div class="columns">
+                    <div class="column">
+                        <a href="{{ notification.related_status.local_path }}">{{ notification.related_status.content | safe | truncatewords_html:10 }}</a>
+                    </div>
+                    <div class="column is-narrow {% if notification.notification_type == 'REPLY' or notification.notification_type == 'MENTION' %}has-text-black{% else %}has-text-grey-dark{% endif %}">
+                        {{ notification.related_status.published_date | post_date }}
+                        {% include 'snippets/privacy-icons.html' with item=notification.related_status %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    {% if not notifications %}
+    <p>You're all caught up!</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{
+    "id": "https://bookwyrm.social/book/5988",
+    "type": "Work",
+    "authors": [
+        "https://bookwyrm.social/author/417"
+    ],
+    "first_published_date": null,
+    "published_date": null,
+    "title": "Piranesi",
+    "sort_title": null,
+    "subtitle": null,
+    "description": "**From the *New York Times* bestselling author of *Jonathan Strange & Mr. Norrell*, an intoxicating, hypnotic new novel set in a dreamlike alternative reality.**\r\n\r\nPiranesi's house is no ordinary building; its rooms are infinite, its corridors endless, its walls are lined with thousands upon thousands of statues, each one different from all the others. Within the labyrinth of halls an ocean is imprisoned; waves thunder up staircases, rooms are flooded in an instant. But Piranesi is not afraid; he understands the tides as he understands the pattern of the labyrinth itself. He lives to explore the house.\r\n\r\nThere is one other person in the house--a man called The Other, who visits Piranesi twice a week and asks for help with research into A Great and Secret Knowledge. But as Piranesi explores, evidence emerges of another person, and a terrible truth begins to unravel, revealing a world beyond the one Piranesi has always known.\r\n\r\nFor readers of Neil Gaiman's *The Ocean at the End of the Lane* and fans of Madeline Miller's *Circe*, *Piranesi* introduces an astonishing new world, an infinite labyrinth full of startling images of surreal beauty, haunted by the tides and the clouds.\r\n\r\nThis description comes from the publisher.",
+    "languages": [],
+    "series": null,
+    "series_number": null,
+    "subjects": [
+        "English literature"
+    ],
+    "subject_places": [],
+    "openlibrary_key": "OL20893680W",
+    "librarything_key": null,
+    "goodreads_key": null,
+    "attachment": [
+        {
+            "url": "https://bookwyrm.social/images/covers/10226290-M.jpg",
+            "type": "Image"
+        }
+    ],
+    "lccn": null,
+    "editions": [
+        "https://bookwyrm.social/book/5989"
+    ],
+    "@context": "https://www.w3.org/ns/activitystreams"
+}
